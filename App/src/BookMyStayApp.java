@@ -1,42 +1,105 @@
 /**
- * =====================================================
- * MAIN CLASS - BookMyStayApp
- * =====================================================
+ * ============================================================
+ * MAIN CLASS – BookMyStayApp
+ * ============================================================
  *
- * Use Case 1 : Application Entry & Welcome Message
+ * Use Case 2: Basic Room Types & Static Availability
  *
  * Description:
- * This class represents the entry point of the
- * Hotel Booking Management System.
+ * Demonstrates room initialization using abstraction,
+ * inheritance and polymorphism.
  *
- * At this stage the application:
- * - Starts execution from main()
- * - Displays welcome message
- * - Confirms successful initialization
+ * Availability stored using simple variables.
  *
- * No business logic or user input is included yet.
- *
- * @author Sameeksha
- * @version 1.0
+ * @version 2.0
  */
+
+abstract class Room {
+
+    // Common room attributes
+    protected int numberOfBeds;
+    protected int squareFeet;
+    protected double pricePerNight;
+
+    // Constructor
+    public Room(int numberOfBeds, int squareFeet, double pricePerNight) {
+        this.numberOfBeds = numberOfBeds;
+        this.squareFeet = squareFeet;
+        this.pricePerNight = pricePerNight;
+    }
+
+    // Display common details
+    public void displayRoomDetails() {
+        System.out.println("Beds: " + numberOfBeds);
+        System.out.println("Size: " + squareFeet + " sqft");
+        System.out.println("Price per night: " + pricePerNight);
+    }
+}
+
+// Single Room
+class SingleRoom extends Room {
+
+    int availableRooms;
+
+    public SingleRoom() {
+        super(1,250,1500.0);
+        availableRooms = 5;
+    }
+
+    public void display() {
+        System.out.println("\nSingle Room:");
+        displayRoomDetails();
+        System.out.println("Available: " + availableRooms);
+    }
+}
+
+// Double Room
+class DoubleRoom extends Room {
+
+    int availableRooms;
+
+    public DoubleRoom() {
+        super(2,400,2500.0);
+        availableRooms = 3;
+    }
+
+    public void display() {
+        System.out.println("\nDouble Room:");
+        displayRoomDetails();
+        System.out.println("Available: " + availableRooms);
+    }
+}
+
+// Suite Room
+class SuiteRoom extends Room {
+
+    int availableRooms;
+
+    public SuiteRoom() {
+        super(3,750,5000.0);
+        availableRooms = 2;
+    }
+
+    public void display() {
+        System.out.println("\nSuite Room:");
+        displayRoomDetails();
+        System.out.println("Available: " + availableRooms);
+    }
+}
+
 
 public class BookMyStayApp {
 
-    /**
-     * Application entry point.
-     * First method executed by JVM.
-     *
-     * @param args Command line arguments
-     */
-
     public static void main(String[] args) {
 
-        System.out.println("====================================");
-        System.out.println(" Welcome to Book My Stay App ");
-        System.out.println(" Hotel Booking Management System ");
-        System.out.println(" Version : 1.0 ");
-        System.out.println(" System initialized successfully ");
-        System.out.println("====================================");
+        System.out.println("Hotel Room Initialization");
 
+        SingleRoom single = new SingleRoom();
+        DoubleRoom dbl = new DoubleRoom();
+        SuiteRoom suite = new SuiteRoom();
+
+        single.display();
+        dbl.display();
+        suite.display();
     }
 }
